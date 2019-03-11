@@ -6,7 +6,7 @@
 #    By: pa <marvin@42.fr>                          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 18:08:54 by pa                #+#    #+#              #
-#    Updated: 2019/03/11 14:13:49 by plaurent         ###   ########.fr        #
+#    Updated: 2019/03/11 15:44:01 by eviana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,14 +53,14 @@ OBJ = ft_putchar_fd.o ft_putnbr.o ft_putendl.o ft_putstr.o ft_putchar.o	\
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) -c $(SRC) -I $(HEADER)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(CFLAGS) -c $(SRC) -I $(HEADER)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

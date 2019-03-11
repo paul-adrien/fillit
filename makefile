@@ -6,7 +6,7 @@
 #    By: plaurent <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/11 11:25:58 by plaurent          #+#    #+#              #
-#    Updated: 2019/03/11 14:05:21 by plaurent         ###   ########.fr        #
+#    Updated: 2019/03/11 15:46:13 by eviana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ OBJ = $(SRC:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
+	@make -C libft
 	@$(CC) -o $(NAME) $(CFLAGS) $(LIBFT) $(OBJ) -I $(HEADER)
 	@echo $(GREEN)*****$(YELLOW)SUCCESS$(GREEN)*****
 
@@ -43,9 +44,11 @@ $(NAME):	$(OBJ)
 .PHONY: clean fclean
 
 clean:
-	@/bin/rm -f $(OBJ) *.a $(wildcard *.o)
+	@make clean -C libft
+	@/bin/rm -f $(OBJ) $(wildcard *.a) $(wildcard *.o)
 
 fclean: clean
+	@make fclean -C libft
 	@/bin/rm -f $(NAME)
 
 re: fclean all
