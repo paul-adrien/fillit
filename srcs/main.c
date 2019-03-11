@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 15:00:03 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 18:43:32 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/11 19:31:52 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static t_tlist	*st_get_tetrilist
 		if (linenb == 4)
 		{
 			linenb = 0;
-			if (ft_check(str, 2) == 0 || (!(tetrilist = ft_newtetri(tetrilist,
-								str, st_tetri_nb(tetrilist)))))
+			if (ft_check(str, 2) == 0 || !(tetrilist = 
+						ft_newtetri(tetrilist, str, st_tetri_nb(tetrilist))))
 				return (0);
 			bzero(str, 16);
 		}

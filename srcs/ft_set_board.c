@@ -6,7 +6,7 @@
 /*   By: eviana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 18:40:38 by eviana            #+#    #+#             */
-/*   Updated: 2019/03/11 18:40:42 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/11 19:03:33 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char		**ft_set_board(t_tlist *tetrilist, int tetrinb)
 	int		i;
 
 	size = st_nearsqrt(tetrinb * 4);
-	if (!(board = st_create_board(size)))
+	if (tetrinb >= 27 || !(board = st_create_board(size)))
 		return (NULL);
 	if (!(board = ft_fill(tetrilist, board, size, 0)))
 		return (NULL);
