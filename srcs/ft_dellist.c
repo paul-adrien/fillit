@@ -6,11 +6,11 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 13:23:50 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:08:42 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 16:44:49 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
 void	ft_dellist(t_tlist **alst)
 {

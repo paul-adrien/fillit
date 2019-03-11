@@ -6,7 +6,7 @@
 #    By: plaurent <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/11 11:25:58 by plaurent          #+#    #+#              #
-#    Updated: 2019/03/11 15:46:13 by eviana           ###   ########.fr        #
+#    Updated: 2019/03/11 18:43:50 by eviana           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ CYAN = "\033[0;36m"
 MAGENTA = "\033[0;35;1m"
 RESET = "\033[0m"
 
-SRC = $(wildcard libft/*.c) $(wildcard srcs/*.c)									\
+SRC = $(wildcard srcs/*.c)									\
 
-HEADER = header/fillit.h
+HEADER = header/
 
-LIBFT = libft/libft.a
+LIB = libft/libft.a
 
 OBJ = $(SRC:.c=.o)
 
@@ -35,11 +35,11 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 	@make -C libft
-	@$(CC) -o $(NAME) $(CFLAGS) $(LIBFT) $(OBJ) -I $(HEADER)
+	@$(CC) -o $(NAME) $(CFLAGS) $(OBJ) -I $(HEADER) $(LIB)
 	@echo $(GREEN)*****$(YELLOW)SUCCESS$(GREEN)*****
 
 %.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
 
 .PHONY: clean fclean
 

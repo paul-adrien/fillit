@@ -6,11 +6,11 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:35:18 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:27:12 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 18:39:44 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
 static t_tlist	*st_create_tetri(t_point *tab, int tetrinb)
 {
@@ -43,8 +43,13 @@ t_tlist			*ft_newtetri(t_tlist *tetrilist, char *str, int tetrinb)
 	t_tlist	*templist;
 	t_point	*tab;
 
-	tab = ft_idtetri(str);
-	tetri = st_create_tetri(tab, tetrinb);
+	if (tetrinb >= 27 || !(tab = ft_idtetri(str)))
+		return (NULL);
+	if (!(tetri = st_create_tetri(tab, tetrinb)))
+	{
+		free(tab);
+		return (NULL);
+	}
 	free(tab);
 	tab = NULL;
 	if (tetrilist == NULL)

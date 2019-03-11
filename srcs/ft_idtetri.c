@@ -6,11 +6,11 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:06:39 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:25:57 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 16:44:57 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
 static t_point	*st_move(t_point *tab, char *str, int initx)
 {

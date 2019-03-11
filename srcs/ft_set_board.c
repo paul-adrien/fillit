@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetriplace.c                                    :+:      :+:    :+:   */
+/*   ft_set_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eviana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/11 14:09:35 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 15:53:29 by plaurent         ###   ########.fr       */
+/*   Created: 2019/03/11 18:40:38 by eviana            #+#    #+#             */
+/*   Updated: 2019/03/11 18:40:42 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
 static int	st_nearsqrt(int nb)
 {
@@ -50,16 +50,18 @@ static char	**st_create_board(int size)
 	return (board);
 }
 
-char		**ft_tetriplace(t_tlist *tetrilist, int tetrinb)
+char		**ft_set_board(t_tlist *tetrilist, int tetrinb)
 {
 	char	**board;
 	int		size;
 	int		i;
 
 	size = st_nearsqrt(tetrinb * 4);
-	board = st_create_board(size);
-	board = ft_backtrack(tetrilist, board, size, 0);
-	while (!ft_check_place_tetri(board, tetrilist))
+	if (!(board = st_create_board(size)))
+		return (NULL);
+	if (!(board = ft_fill(tetrilist, board, size, 0)))
+		return (NULL);
+	while (!ft_tetri_is_placed(board, tetrilist))
 	{
 		i = 0;
 		while (i < (size + 1))
@@ -69,8 +71,10 @@ char		**ft_tetriplace(t_tlist *tetrilist, int tetrinb)
 		}
 		free(board);
 		size++;
-		board = st_create_board(size);
-		board = ft_backtrack(tetrilist, board, size, 0);
+		if (!(board = st_create_board(size)))
+			return (NULL);
+		if (!(board = ft_fill(tetrilist, board, size, 0)))
+			return (NULL);
 	}
 	return (board);
 }

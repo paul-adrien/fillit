@@ -6,11 +6,11 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 13:54:53 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:09:26 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 16:45:16 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
 void	ft_printboard(char **board)
 {

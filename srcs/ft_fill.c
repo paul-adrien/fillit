@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_backtrack.c                                     :+:      :+:    :+:   */
+/*   ft_fill.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eviana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 17:21:28 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:21:18 by plaurent         ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:32 by eviana            #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:36 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
-static int	st_condition1(t_point *tab, int i, int size, char **board)
+static int	st_place_available(t_point *tab, int i, int size, char **board)
 {
-	if (ft_check_board1(tab, i % size, i / size, size) == 1 &&
-			ft_check_board2(board, tab, i % size, i / size) == 1)
+	if (ft_is_on_board(tab, i % size, i / size, size) == 1 &&
+			ft_is_empty(board, tab, i % size, i / size) == 1)
 		return (1);
 	return (0);
 }
 
-static int	st_condition2(t_tlist *tetri, char **board)
+static int	st_last_tetri_is_placed(t_tlist *tetri, char **board)
 {
-	if ((tetri->next == NULL && ft_check_place_tetri(board, tetri)) ||
-			(tetri->next != NULL && ft_check_place_tetri(board, tetri->next)))
+	if ((tetri->next == NULL && ft_tetri_is_placed(board, tetri)) ||
+			(tetri->next != NULL && ft_tetri_is_placed(board, tetri->next)))
 		return (1);
 	return (0);
 }
@@ -56,7 +56,7 @@ static int	*st_coord(int i, int size)
 	return (tab2);
 }
 
-char		**ft_backtrack(t_tlist *tetri, char **board, int s, int i)
+char		**ft_fill(t_tlist *tetri, char **board, int s, int i)
 {
 	t_point *tab;
 
@@ -65,19 +65,19 @@ char		**ft_backtrack(t_tlist *tetri, char **board, int s, int i)
 	{
 		while (i <= ((s * s) - 3))
 		{
-			if (st_condition1(tab, i, s, board))
+			if (st_place_available(tab, i, s, board))
 			{
 				if (!(board = st_pose(board, st_coord(i, s), tab, tetri->name)))
 					return (NULL);
-				if (tetri->next)
-					board = ft_backtrack(tetri->next, board, s, 0);
+				if (tetri->next && !(board = ft_fill(tetri->next, board, s, 0)))
+					return (NULL);
 				break ;
 			}
 			i++;
 		}
-		if (st_condition2(tetri, board))
+		if (st_last_tetri_is_placed(tetri, board))
 			break ;
-		if (tetri->next != NULL && ft_check_place_tetri(board, tetri))
+		if (tetri->next != NULL && ft_tetri_is_placed(board, tetri))
 			if (!(board = st_pose(board, st_coord(i, s), tab, '.')))
 				return (NULL);
 		i++;

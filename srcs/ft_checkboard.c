@@ -6,13 +6,13 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 13:28:55 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:08:10 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 16:55:29 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fillit.h"
+#include "fillit.h"
 
-int	ft_check_board1(t_point *tab, int x, int y, int size)
+int	ft_is_on_board(t_point *tab, int x, int y, int size)
 {
 	if ((y + tab[0].y) < size && (x + tab[0].x) < size &&
 			(y + tab[1].y) < size && (x + tab[1].x) < size &&
@@ -23,7 +23,7 @@ int	ft_check_board1(t_point *tab, int x, int y, int size)
 		return (0);
 }
 
-int	ft_check_board2(char **board, t_point *tab, int x, int y)
+int	ft_is_empty(char **board, t_point *tab, int x, int y)
 {
 	if (board[y + tab[0].y][x + tab[0].x] == '.' &&
 			board[y + tab[1].y][x + tab[1].x] == '.' &&
