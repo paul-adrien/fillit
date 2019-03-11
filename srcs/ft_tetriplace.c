@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:09:35 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:28:36 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/11 15:53:29 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	**st_create_board(int size)
 
 char		**ft_tetriplace(t_tlist *tetrilist, int tetrinb)
 {
-	char 	**board;
+	char	**board;
 	int		size;
 	int		i;
 
