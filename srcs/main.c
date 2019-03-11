@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 15:00:03 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 21:11:56 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/11 21:27:04 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int				main(int argc, char **argv)
 	free(line);
 	if (!(board = ft_set_board(tetrilist, st_tetri_nb(tetrilist))))
 	{
-		//ft_dellist(&tetrilist);
+		ft_dellist(&tetrilist);
 		close(fd);
 		return (0);
 	}

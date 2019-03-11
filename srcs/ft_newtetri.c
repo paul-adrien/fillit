@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:35:18 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 21:11:58 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/11 21:27:11 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_tlist			*ft_newtetri(t_tlist *tetrilist, char *str, int tetrinb)
 
 	if (tetrinb >= 27 || !(tab = ft_idtetri(str)))
 	{
-		ft_putstr("TEST");
 		ft_dellist(&tetrilist);
 		return (NULL);
 	}
