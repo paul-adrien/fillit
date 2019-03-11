@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 15:00:03 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 19:31:52 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/11 21:11:56 by eviana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static t_tlist	*st_get_tetrilist
 		{
 			linenb = 0;
 			if (ft_check(str, 2) == 0 || !(tetrilist = 
-						ft_newtetri(tetrilist, str, st_tetri_nb(tetrilist))))
+				ft_newtetri(tetrilist, str, st_tetri_nb(tetrilist))))
 				return (0);
 			bzero(str, 16);
 		}
@@ -91,13 +91,25 @@ int				main(int argc, char **argv)
 	if (st_print_error(argc, 0, 1) == 0
 		|| (fd = open(argv[1], O_RDONLY)) == -1)
 		return (0);
-	if (!(str = ft_strnew(16))
-		|| !(tetrilist = st_get_tetrilist(fd, tetrilist, str, line)))
+	if (!(str = ft_strnew(16)))
+	{
+		close(fd);
 		return (0);
+	}
+	if (!(tetrilist = st_get_tetrilist(fd, tetrilist, str, line)))
+	{
+		close(fd);
+		free(str);
+		return (0);
+	}
 	free(str);
 	free(line);
 	if (!(board = ft_set_board(tetrilist, st_tetri_nb(tetrilist))))
+	{
+		//ft_dellist(&tetrilist);
+		close(fd);
 		return (0);
+	}
 	ft_printboard(board);
 	ft_dellist(&tetrilist);
 	close(fd);
