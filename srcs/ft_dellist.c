@@ -6,13 +6,13 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 13:23:50 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 16:44:49 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/12 16:02:23 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_dellist(t_tlist **alst)
+int		ft_dellist(t_tlist **alst)
 {
 	t_tlist *temp;
 
@@ -26,4 +26,5 @@ void	ft_dellist(t_tlist **alst)
 			*alst = temp;
 		}
 	}
+	return (1);
 }

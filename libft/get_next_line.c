@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 11:16:28 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:15:10 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:10:12 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ static char			*st_refresh_str(char *str)
 	return (str);
 }
 
-int					get_next_line(int const fd, char **line)
+int					get_next_line(int const fd, char **line, int error)
 {
 	char		buff[BUFF_SIZE + 1];
 	static char	*str[1024];
 	int			size;
 
+	if (error)
+	{
+		free(str[fd]);
+		return (-1);
+	}
 	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, buff, 0) < 0 ||
 			(!(str[fd]) && (str[fd] = ft_strnew(0)) == NULL))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:40:57 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 14:16:30 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:08:23 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-int				get_next_line(int const fd, char **line);
+int				get_next_line(int const fd, char **line, int error);
 int				ft_size_long(long n);
 char			*ft_strrev(char *str);
 char			*ft_lltoa(long long n);

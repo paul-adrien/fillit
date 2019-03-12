@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 11:39:54 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 18:38:02 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/12 16:09:05 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_tlist
 
 int				ft_is_empty(char **board, t_point *tab, int x, int y);
 int				ft_is_on_board(t_point *tab, int x, int y, int size);
-void			ft_dellist(t_tlist **alst);
+int				ft_dellist(t_tlist **alst);
 char			**ft_set_board(t_tlist *tetrilist, int tetrinb);
 char			**ft_fill(t_tlist *tetri, char **board, int size, int i);
 int				ft_tetri_is_placed(char **board, t_tlist *tetri);
@@ -41,5 +41,4 @@ void			ft_printboard(char **board);
 t_point			*ft_idtetri(char *str);
 int				ft_check(char *str, int n);
 t_tlist			*ft_newtetri(t_tlist *tetrilist, char *str, int tetrinb);
-int				get_next_line(const int fd, char **line);
 #endif

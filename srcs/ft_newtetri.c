@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:35:18 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/11 21:27:11 by eviana           ###   ########.fr       */
+/*   Updated: 2019/03/12 15:41:11 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ t_tlist			*ft_newtetri(t_tlist *tetrilist, char *str, int tetrinb)
 	t_tlist	*templist;
 	t_point	*tab;
 
-	if (tetrinb >= 27 || !(tab = ft_idtetri(str)))
-	{
-		ft_dellist(&tetrilist);
+	if ((tetrinb >= 27 || !(tab = ft_idtetri(str))) && ft_dellist(&tetrilist))
 		return (NULL);
-	}
 	if (!(tetri = st_create_tetri(tab, tetrinb)))
 	{
 		ft_dellist(&tetrilist);
@@ -55,7 +52,6 @@ t_tlist			*ft_newtetri(t_tlist *tetrilist, char *str, int tetrinb)
 		return (NULL);
 	}
 	free(tab);
-	tab = NULL;
 	if (tetrilist == NULL)
 		return (tetri);
 	else
