@@ -6,7 +6,7 @@
 #    By: plaurent <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/11 11:25:58 by plaurent          #+#    #+#              #
-#    Updated: 2019/03/11 18:43:50 by eviana           ###   ########.fr        #
+#    Updated: 2019/03/12 17:31:31 by plaurent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ RESET = "\033[0m"
 
 SRC = $(wildcard srcs/*.c)									\
 
-HEADER = header/
+HEADER = srcs/
 
 LIB = libft/libft.a
 

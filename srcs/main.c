@@ -6,7 +6,7 @@
 /*   By: plaurent <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 15:00:03 by plaurent          #+#    #+#             */
-/*   Updated: 2019/03/12 16:40:33 by plaurent         ###   ########.fr       */
+/*   Updated: 2019/03/12 17:17:39 by plaurent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,6 @@ static int		st_tetri_nb(t_tlist *tetrilist)
 	return (tetrinb);
 }
 
-static t_tlist	*st_get_tetrilist
-	(int fd, t_tlist *tetrilist, char *str, char *line)
-{
-	int	linenb;
-
-	linenb = 1;
-	while (get_next_line(fd, &line, 0) == 1)
-	{
-		str = ft_strcat(str, line);
-		if (linenb == 0 && ft_check(str, 1) == 0)
-		{
-			free(line);
-			if (tetrilist && ft_dellist(&tetrilist))
-				return (0);
-			return (0);
-		}
-		free(line);
-		if (linenb == 4)
-		{
-			if (ft_check(str, 2) == 0 || !(tetrilist =
-				ft_newtetri(tetrilist, str, st_tetri_nb(tetrilist))))
-				if (tetrilist && ft_dellist(&tetrilist))
-						//&& get_next_line(fd, &line, 1) == -1)
-					return (0);
-			linenb = 0;
-			bzero(str, 16);
-		}
-		else
-			linenb++;
-	}
-	free(line);
-	if (!(st_print_error(0, linenb, 2)))
-		return (0);
-	return (tetrilist);
-}
-
 static int		st_clean(char *str1, char *str2, int fd, int gnl)
 {
 	if (str1)
@@ -96,6 +60,36 @@ static int		st_clean(char *str1, char *str2, int fd, int gnl)
 	if (gnl)
 		get_next_line(fd, NULL, 1);
 	return (0);
+}
+
+static t_tlist	*st_get_tetrilist
+	(int fd, t_tlist *tetrilist, char *str, char *line)
+{
+	int	linenb;
+
+	linenb = 1;
+	while (get_next_line(fd, &line, 0) == 1)
+	{
+		str = ft_strcat(str, line);
+		free(line);
+		if (linenb == 0 && ft_check(str, 1) == 0 && ft_dellist(&tetrilist))
+			return (0);
+		if (linenb == 4)
+		{
+			if (ft_check(str, 2) == 0 || !(tetrilist =
+				ft_newtetri(tetrilist, str, st_tetri_nb(tetrilist))))
+				if (ft_dellist(&tetrilist))
+					return (0);
+			linenb = 0;
+			bzero(str, 16);
+		}
+		else
+			linenb++;
+	}
+	free(line);
+	if (!(st_print_error(0, linenb, 2)))
+		return (0);
+	return (tetrilist);
 }
 
 int				main(int argc, char **argv)
